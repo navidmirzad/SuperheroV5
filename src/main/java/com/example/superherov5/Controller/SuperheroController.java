@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,19 +26,15 @@ public class SuperheroController {
 
     @GetMapping("/")
     public String getListOfSuperheroes(Model model) {
-        List <Superhero> listOfSuperheroes = superheroService.getSuperheroes();
+        List<Superhero> listOfSuperheroes = superheroService.getSuperheroes();
         model.addAttribute("superheroes", listOfSuperheroes);
-
         return "index";
     }
 
     @GetMapping("/create")
-    public String showCreate(Model model) {
+    public String create(Model model) {
         SuperheroFormDTO superheroForm = new SuperheroFormDTO();
         model.addAttribute("superheroForm", superheroForm);
-
-        List<String> powerList = Arrays.asList("Fast", "Strong", "Invisible");
-        model.addAttribute("powerList", powerList);
         return "creation_form";
     }
 

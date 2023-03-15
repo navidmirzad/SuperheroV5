@@ -1,5 +1,4 @@
 body {
-
     max-width: 500px;
     margin: auto;
     background: white;
@@ -15,7 +14,6 @@ label {
     width: 150px;
     display: inline-block;
 }
-
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -29,4 +27,10 @@ th {
 select, input[type="text"], input[type="number"]{
     width:200px;
     box-sizing:border-box;
+}
+
+div {
+    border: 1px solid black;
+    padding: 10px;
+    margin-bottom: 10px;
 }

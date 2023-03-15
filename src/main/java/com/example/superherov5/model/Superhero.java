@@ -9,6 +9,7 @@ public class Superhero {
     private int discoveryYear;
     private String isHuman;      // TODO: make boolean
     private int strength;
+    private String city;
 
     public Superhero(int hero_id, String superheroName, String realName, int discoveryYear, String isHuman, int strength) {
         this.hero_id = hero_id;
@@ -17,6 +18,10 @@ public class Superhero {
         this.discoveryYear = discoveryYear;
         this.isHuman = isHuman;
         this.strength = strength;
+    }
+
+    public Superhero() {
+
     }
 
 
