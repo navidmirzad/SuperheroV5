@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Superheroes</title>
+</head>
+<body>
+
+<h1>Superheroes</h1>
+<div th:each="hero : ${superheroes}">
+    <span th:text="${hero.superheroName}"></span>
+    <span th:text="${hero.realName}"></span>
+    <span th:text="${hero.discoveryYear}"></span>
+    <span th:text="${hero.strength}"></span>
+    <span th:text="${hero.city}"></span>
+
+    <tr>
+
+    </tr>
+</div>
+</body>
+</html>

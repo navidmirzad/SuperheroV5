@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Hero Creation</title>
+</head>
+
+<style type="text/css">
+  label {
+    display: inline-block;
+    width: 200px;
+    margin: 5px;
+    text-align: left;
+  }
+  input[type=text], input[type=password], select {
+    display: inline-block;
+    width: 200px;
+  }
+  input[type=radio] {
+    margin-left: 45px;
+  }
+  input[type=checkbox] {
+    margin-right: 190px;
+  }
+  button {
+    padding: 5px;
+    margin: 10px;
+  }
+</style>
+
+<body>
+<div align="center">
+  <h1>Hero Creation</h1>
+  <form action="#" th:action="@{/create}" method="post" th:object="${superheroForm}">
+    <label>Superhero Name:</label>
+    <input type="text" th:field="*{superheroName}" /><br/>
+
+    <label>Real Name:</label>
+    <input type="text" th:field="*{realName}" /><br/>
+
+    <label>Discovery Year:</label>
+    <input type="text" th:field="*{discoveryYear}" /><br/>
+
+    <label>Strength:</label>
+    <input type="text" th:field="*{strength}" /><br/>
+
+    <label>City:</label>
+    <input type="text" th:field="*{city}" /><br/>
+
+    <label>Superpower:</label>
+    <select th:field="*{powerList}">
+      <option th:each="p : ${powerList}" th:value="${p}" th:text="${p}" />
+    </select>
+    <br/>
+
+    <button type="submit">Create</button>
+  </form>
+</div>
+</body>
+</html>
