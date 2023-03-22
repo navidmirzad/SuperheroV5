@@ -1,9 +1,6 @@
 package com.example.superherov5.repositories;
 
-import com.example.superherov5.dto.SuperheroCityDTO;
-import com.example.superherov5.dto.SuperheroDTO;
-import com.example.superherov5.dto.SuperheroNamePowerDTO;
-import com.example.superherov5.dto.SuperheroPowerCountDTO;
+import com.example.superherov5.dto.*;
 import com.example.superherov5.model.Superhero;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
@@ -158,5 +155,88 @@ public class SuperheroRepository_DB implements IRepository {
         }
     }
 
+    public void addSuperHero(SuperheroFormDTO superheroFormDTO) {
+
+        try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
+            // ID's
+            int cityId = 0;
+            int heroId = 0;
+            List<Integer> powerIDs = new ArrayList<>();
+
+            // find city_id
+            String SQL1 = "select city_id from city where name = ?;";
+            PreparedStatement pstmt = con.prepareStatement(SQL1);
+            pstmt.setString(1, superheroFormDTO.getCity());
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                cityId = rs.getInt("city_id");
+            }
+
+            // insert row in superhero table
+            String SQL2 = "insert into superhero (hero_name, real_name, creation_year, city_id) " +
+                    "values(?, ?, ?, ?);";
+            pstmt = con.prepareStatement(SQL2, Statement.RETURN_GENERATED_KEYS); // return autoincremented key
+            pstmt.setString(1, superheroFormDTO.getSuperheroName());
+            pstmt.setString(2, superheroFormDTO.getRealName());
+            pstmt.setInt(3, superheroFormDTO.getDiscoveryYear());
+            pstmt.setInt(4, cityId);
+            int rows = pstmt.executeUpdate();
+            rs = pstmt.getGeneratedKeys();
+
+            if (rs.next()) {
+                heroId = rs.getInt(1);
+            }
+
+            // find power_ids
+            String SQL3 = "select power_id from superpower where superheroName = ?;";
+            pstmt = con.prepareStatement(SQL3);
+
+            for (String power : superheroFormDTO.getSuperpowers()) {
+                pstmt.setString(1, power);
+                rs = pstmt.executeQuery();
+
+                if (rs.next()) {
+                    powerIDs.add(rs.getInt("power_id"));
+                }
+            }
+
+            // insert entries in superhero_powers join table
+            String SQL4 = "insert into superhero_powers values (?,?,'high');";
+            pstmt = con.prepareStatement(SQL4);
+
+            for (int i = 0; i < powerIDs.size(); i++) {
+                pstmt.setInt(1, heroId);
+                pstmt.setInt(2, powerIDs.get(i));
+                rows = pstmt.executeUpdate();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+   /* public List<String> getCities() {
+        List<String> cities = new ArrayList<>();
+
+        try (Connection con = DriverManager.getConnection(db_url, uid, pwd)) {
+
+            String SQL = "SELECT cityName FROM city;";
+            Statement statement = con.createStatement();
+            ResultSet rs = statement.executeQuery(SQL);
+
+            while (rs.next()) {
+                String city = rs.getString("city");
+                cities.add(city);
+
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return cities;
+    }*/
 
 }
+

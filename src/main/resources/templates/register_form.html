@@ -49,7 +49,7 @@
 
     <label>Superpowers:</label>
     <select th:field="*{superpowers}">
-      <option th:each="p : ${listPowers}" th:value="${p}" th:text="${p}" />
+      <option th:each="p : ${superheroForm.superpowers}" th:value="${p}" th:text="${p}" />
     </select>
 
     <button type="submit">Create</button>

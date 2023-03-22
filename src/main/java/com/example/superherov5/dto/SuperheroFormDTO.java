@@ -10,9 +10,9 @@ public class SuperheroFormDTO {
     private int discoveryYear;
     private int strength;
     private String city;
-    private String superpowers;
+    List<String> superpowers;
 
-    public SuperheroFormDTO(int hero_id, String superheroName, String realName, int discoveryYear, int strength, String city, String superpowers) {
+    public SuperheroFormDTO(int hero_id, String superheroName, String realName, int discoveryYear, int strength, String city, List<String> superpowers) {
         this.hero_id = hero_id;
         this.superheroName = superheroName;
         this.realName = realName;
@@ -23,7 +23,10 @@ public class SuperheroFormDTO {
     }
 
     public SuperheroFormDTO() {
+    }
 
+    public void add(String power) {
+        superpowers.add(power);
     }
 
     public int getHero_id() {
@@ -50,7 +53,7 @@ public class SuperheroFormDTO {
         return city;
     }
 
-    public String getSuperpowers() {
+    public List<String> getSuperpowers() {
         return superpowers;
     }
 
@@ -78,7 +81,7 @@ public class SuperheroFormDTO {
         this.city = city;
     }
 
-    public void setSuperpowers(String superpowers) {
+    public void setSuperpowers(List<String> superpowers) {
         this.superpowers = superpowers;
     }
 

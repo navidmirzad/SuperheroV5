@@ -14,7 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-//@RequestMapping("superheroes")
+@RequestMapping("superheroes")
 public class SuperheroController {
 
     private SuperheroService superheroService;
@@ -35,14 +35,16 @@ public class SuperheroController {
         SuperheroFormDTO superheroForm = new SuperheroFormDTO();
         model.addAttribute("superheroForm", superheroForm);
 
-        List<String> superpowers = Arrays.asList("Fast", "Rich", "Strong");
-        model.addAttribute("listPowers", superpowers);
+       // List<String> cities = superheroService.getCities();
+       // model.addAttribute("cities", cities);
+
         return "register_form";
     }
 
+
     @PostMapping("/register")
-    public String submitForm(@ModelAttribute("superheroForm") SuperheroFormDTO superheroForm) {
-        System.out.println(superheroForm);
+    public String submitForm(@ModelAttribute("superheroForm") SuperheroFormDTO superheroFormDTO) {
+        System.out.println(superheroFormDTO);
         return "register_success";
     }
 
