@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
   <meta charset="ISO-8859-1">
   <title>Registration Success</title>
+
   <style type="text/css">
     span {
       display: inline-block;
@@ -10,8 +12,10 @@
       text-align: left;
     }
   </style>
+
 </head>
 <body>
+
 <div align="center">
   <h2>Registration Succeeded!</h2>
   <span>Superhero Name:</span><span th:text="${superheroForm.superheroName}"></span><br/>
@@ -19,7 +23,8 @@
   <span>Discovery Year:</span><span th:text="${superheroForm.discoveryYear}"></span><br/>
   <span>Strength :</span><span th:text="${superheroForm.strength}"></span><br/>
   <span>City:</span><span th:text="${superheroForm.city}"></span><br/>
-  <span>PowerList?</span><span th:text="${superheroForm.powerList}"></span><br/>
+  <span>PowerList?</span><span th:text="${superheroForm.superpowers}"></span><br/>
 </div>
+
 </body>
 </html>

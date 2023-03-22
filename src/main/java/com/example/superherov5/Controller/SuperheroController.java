@@ -10,12 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping("superheroes")
+//@RequestMapping("superheroes")
 public class SuperheroController {
 
     private SuperheroService superheroService;
@@ -31,17 +30,20 @@ public class SuperheroController {
         return "index";
     }
 
-    @GetMapping("/create")
-    public String create(Model model) {
+    @GetMapping("/register")
+    public String showForm(Model model) {
         SuperheroFormDTO superheroForm = new SuperheroFormDTO();
         model.addAttribute("superheroForm", superheroForm);
-        return "creation_form";
+
+        List<String> superpowers = Arrays.asList("Fast", "Rich", "Strong");
+        model.addAttribute("listPowers", superpowers);
+        return "register_form";
     }
 
-    @PostMapping("/superheroes/create")
+    @PostMapping("/register")
     public String submitForm(@ModelAttribute("superheroForm") SuperheroFormDTO superheroForm) {
         System.out.println(superheroForm);
-        return "creation_success";
+        return "register_success";
     }
 
 

@@ -77,7 +77,6 @@ public class SuperheroRepository_DB implements IRepository {
         }
     }
 
-
     public List<SuperheroPowerCountDTO> getSuperheroPowerCount() {
 
         List<SuperheroPowerCountDTO> superheroPowerCount = new ArrayList<>();
@@ -104,7 +103,6 @@ public class SuperheroRepository_DB implements IRepository {
             throw new RuntimeException(e);
         }
     }
-
 
     public List<SuperheroNamePowerDTO> getSuperheroNameAndPower() {
         List<SuperheroNamePowerDTO> superheroNamePower = new ArrayList<>();
