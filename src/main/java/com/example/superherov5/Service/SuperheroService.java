@@ -1,9 +1,6 @@
 package com.example.superherov5.Service;
 
-import com.example.superherov5.dto.SuperheroCityDTO;
-import com.example.superherov5.dto.SuperheroDTO;
-import com.example.superherov5.dto.SuperheroNamePowerDTO;
-import com.example.superherov5.dto.SuperheroPowerCountDTO;
+import com.example.superherov5.dto.*;
 import com.example.superherov5.model.Superhero;
 import com.example.superherov5.repositories.SuperheroRepository_DB;
 import org.springframework.stereotype.Service;
@@ -40,6 +37,17 @@ public class SuperheroService {
         return superheroRepository_db.getSuperheroCity(cityName);
     }
 
+    public List<String> getCities() {
+        return superheroRepository_db.getCities();
+    }
+
+    public List<String> getPowers() {
+        return superheroRepository_db.getPowers();
+    }
+
+    public void addSuperhero(SuperheroFormDTO superheroForm) {
+        superheroRepository_db.addSuperHero(superheroForm);
+    }
 
   /*  public Superhero createSuperhero(Superhero superhero) {
         return superheroRepository.createSuperhero(superhero);

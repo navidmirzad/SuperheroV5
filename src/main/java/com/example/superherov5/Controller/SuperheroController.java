@@ -32,15 +32,20 @@ public class SuperheroController {
     }
 
     @GetMapping("/create")
-    public String create(Model model) {
+    public String showCreateForm(Model model) {
         SuperheroFormDTO superheroForm = new SuperheroFormDTO();
         model.addAttribute("superheroForm", superheroForm);
+
+        // get list of cities and powers from repo_db
+        model.addAttribute("cities", superheroService.getCities());
+        model.addAttribute("powers", superheroService.getPowers());
+
         return "creation_form";
     }
 
-    @PostMapping("/superheroes/create")
-    public String submitForm(@ModelAttribute("superheroForm") SuperheroFormDTO superheroForm) {
-        System.out.println(superheroForm);
+    @PostMapping("/create")
+    public String Created(@ModelAttribute("superheroForm") SuperheroFormDTO superheroForm) {
+        superheroService.addSuperhero(superheroForm);
         return "creation_success";
     }
 
